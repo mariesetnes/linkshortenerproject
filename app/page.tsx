@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Link2, BarChart3, Lock, Moon, Zap, Code } from "lucide-react"
@@ -33,9 +34,9 @@ export default async function Home() {
           
           <div className="flex flex-col sm:flex-row gap-4">
             <Button size="lg" asChild>
-              <a href="/dashboard">
+              <Link href="/dashboard">
                 Get Started Free
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a href="#features">
@@ -179,9 +180,9 @@ export default async function Home() {
                 Join thousands of users who trust our link shortener for their business and personal needs.
               </p>
               <Button size="lg" asChild>
-                <a href="/dashboard">
+                <Link href="/dashboard">
                   Get Started Now
-                </a>
+                </Link>
               </Button>
             </div>
           </CardContent>
