@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -144,7 +143,7 @@ export default async function Home() {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Full dark mode support that's easy on the eyes. Seamlessly switch between light and dark themes.
+                Full dark mode support that&apos;s easy on the eyes. Seamlessly switch between light and dark themes.
               </CardDescription>
             </CardContent>
           </Card>
