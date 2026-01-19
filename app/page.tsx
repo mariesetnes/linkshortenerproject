@@ -38,11 +38,6 @@ export default async function Home() {
                 Get Started Free
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#features">
-                View Features
-              </a>
-            </Button>
           </div>
           
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
