@@ -27,6 +27,14 @@ A modern link shortener application built with Next.js 16, React 19, TypeScript,
 - **Authentication**: Clerk 6.36.8
 - **Icons**: Lucide React 0.562.0
 
+## ⚠️ CRITICAL: Next.js Middleware Warning
+
+**NEVER use `middleware.ts`** - This is deprecated in later versions of Next.js with TypeScript.
+
+**✅ ALWAYS use `proxy.ts` instead** for middleware functionality.
+
+This project uses `proxy.ts` for all middleware-related operations. If you need to add middleware logic, implement it in the existing `proxy.ts` file following the established patterns.
+
 ## Documentation Structure
 
 For detailed guidelines on specific topics, refer to the modular documentation in the `/docs` directory. 

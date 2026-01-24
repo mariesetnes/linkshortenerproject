@@ -14,58 +14,58 @@ async function seedExampleLinks() {
   // Create database connection with Neon client
   const sql = neon(process.env.DATABASE_URL);
   const db = drizzle(sql);
-  const userId = "user_38Y7rbRS0kwR8W3GpeU1ike2y53";
+  const userId = "user_38gYbeHIKeMI9HKzDU8V5UiSjn0";
   
   const exampleLinks = [
     {
       userId,
-      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      shortCode: "mdn-js",
+      url: "https://www.figma.com/",
+      shortCode: "figma",
     },
     {
       userId,
-      url: "https://www.typescriptlang.org/docs/",
-      shortCode: "ts-docs",
+      url: "https://stripe.com/docs/api",
+      shortCode: "stripe",
     },
     {
       userId,
-      url: "https://react.dev/learn",
-      shortCode: "react",
+      url: "https://www.freecodecamp.org/",
+      shortCode: "fcc",
     },
     {
       userId,
-      url: "https://nodejs.org/en/docs/",
-      shortCode: "nodejs",
+      url: "https://web.dev/",
+      shortCode: "webdev",
     },
     {
       userId,
-      url: "https://stackoverflow.com/questions/tagged/typescript",
-      shortCode: "so-ts",
+      url: "https://www.producthunt.com/",
+      shortCode: "ph",
     },
     {
       userId,
-      url: "https://www.postgresql.org/docs/",
-      shortCode: "pg-docs",
+      url: "https://firebase.google.com/docs",
+      shortCode: "firebase",
     },
     {
       userId,
-      url: "https://vitejs.dev/guide/",
-      shortCode: "vite",
+      url: "https://aws.amazon.com/documentation/",
+      shortCode: "aws",
     },
     {
       userId,
-      url: "https://code.visualstudio.com/docs",
-      shortCode: "vscode",
+      url: "https://www.udemy.com/",
+      shortCode: "udemy",
     },
     {
       userId,
-      url: "https://www.reddit.com/r/webdev/",
-      shortCode: "r-webdev",
+      url: "https://dev.to/",
+      shortCode: "devto",
     },
     {
       userId,
-      url: "https://css-tricks.com/",
-      shortCode: "css-tricks",
+      url: "https://hashnode.com/",
+      shortCode: "hashnode",
     },
   ];
 
