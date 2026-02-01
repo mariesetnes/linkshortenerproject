@@ -32,3 +32,35 @@ export async function checkShortCodeExists(shortCode: string) {
   
   return !!link
 }
+
+export async function updateLink(linkId: number, userId: string, data: { url: string; shortCode: string }) {
+  const [link] = await db
+    .update(links)
+    .set({
+      url: data.url,
+      shortCode: data.shortCode,
+    })
+    .where(eq(links.id, linkId))
+    .returning()
+  
+  return link
+}
+
+export async function deleteLink(linkId: number, userId: string) {
+  const [link] = await db
+    .delete(links)
+    .where(eq(links.id, linkId))
+    .returning()
+  
+  return link
+}
+
+export async function getLinkById(linkId: number, userId: string) {
+  const [link] = await db
+    .select()
+    .from(links)
+    .where(eq(links.id, linkId))
+    .limit(1)
+  
+  return link
+}

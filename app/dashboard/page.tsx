@@ -4,6 +4,8 @@ import { getUserLinks } from "@/data/links"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CreateLinkDialog } from "@/components/CreateLinkDialog"
+import { EditLinkDialog } from "@/components/EditLinkDialog"
+import { DeleteLinkDialog } from "@/components/DeleteLinkDialog"
 
 export default async function DashboardPage() {
   const { userId } = await auth()
@@ -56,6 +58,8 @@ export default async function DashboardPage() {
                     <Button variant="outline" size="sm">
                       View Stats
                     </Button>
+                    <EditLinkDialog link={link} />
+                    <DeleteLinkDialog link={link} />
                   </div>
                 </div>
               </CardContent>
