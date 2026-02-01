@@ -10,12 +10,12 @@ async function seedExampleLinks() {
   if (!process.env.DATABASE_URL) {
     throw new Error("DATABASE_URL environment variable is not set");
   }
-  
+
   // Create database connection with Neon client
   const sql = neon(process.env.DATABASE_URL);
   const db = drizzle(sql);
   const userId = "user_38gYbeHIKeMI9HKzDU8V5UiSjn0";
-  
+
   const exampleLinks = [
     {
       userId,
@@ -71,9 +71,9 @@ async function seedExampleLinks() {
 
   try {
     console.log("Seeding example links...");
-    
+
     const result = await db.insert(links).values(exampleLinks).returning();
-    
+
     console.log(`✅ Successfully inserted ${result.length} example links`);
     console.log("\nCreated links:");
     result.forEach((link) => {

@@ -1,16 +1,19 @@
-import { db } from "@/db"
-import { links } from "@/db/schema"
-import { eq, desc } from "drizzle-orm"
+import { db } from "@/db";
+import { links } from "@/db/schema";
+import { eq, desc } from "drizzle-orm";
 
 export async function getUserLinks(userId: string) {
   return await db
     .select()
     .from(links)
     .where(eq(links.userId, userId))
-    .orderBy(desc(links.updatedAt))
+    .orderBy(desc(links.updatedAt));
 }
 
-export async function createLink(userId: string, data: { url: string; shortCode: string }) {
+export async function createLink(
+  userId: string,
+  data: { url: string; shortCode: string },
+) {
   const [link] = await db
     .insert(links)
     .values({
@@ -18,9 +21,9 @@ export async function createLink(userId: string, data: { url: string; shortCode:
       url: data.url,
       shortCode: data.shortCode,
     })
-    .returning()
-  
-  return link
+    .returning();
+
+  return link;
 }
 
 export async function checkShortCodeExists(shortCode: string) {
@@ -28,12 +31,16 @@ export async function checkShortCodeExists(shortCode: string) {
     .select()
     .from(links)
     .where(eq(links.shortCode, shortCode))
-    .limit(1)
-  
-  return !!link
+    .limit(1);
+
+  return !!link;
 }
 
-export async function updateLink(linkId: number, userId: string, data: { url: string; shortCode: string }) {
+export async function updateLink(
+  linkId: number,
+  userId: string,
+  data: { url: string; shortCode: string },
+) {
   const [link] = await db
     .update(links)
     .set({
@@ -41,18 +48,15 @@ export async function updateLink(linkId: number, userId: string, data: { url: st
       shortCode: data.shortCode,
     })
     .where(eq(links.id, linkId))
-    .returning()
-  
-  return link
+    .returning();
+
+  return link;
 }
 
 export async function deleteLink(linkId: number, userId: string) {
-  const [link] = await db
-    .delete(links)
-    .where(eq(links.id, linkId))
-    .returning()
-  
-  return link
+  const [link] = await db.delete(links).where(eq(links.id, linkId)).returning();
+
+  return link;
 }
 
 export async function getLinkById(linkId: number, userId: string) {
@@ -60,7 +64,7 @@ export async function getLinkById(linkId: number, userId: string) {
     .select()
     .from(links)
     .where(eq(links.id, linkId))
-    .limit(1)
-  
-  return link
+    .limit(1);
+
+  return link;
 }

@@ -23,15 +23,15 @@ The `/dashboard` route is protected and requires authentication:
 
 ```typescript
 // In server components/actions
-import { auth } from "@clerk/nextjs/server"
+import { auth } from "@clerk/nextjs/server";
 
 export default async function DashboardPage() {
-  const { userId } = await auth()
-  
+  const { userId } = await auth();
+
   if (!userId) {
-    redirect("/")
+    redirect("/");
   }
-  
+
   // Protected content
 }
 ```
@@ -42,16 +42,16 @@ Users already logged in should be redirected to `/dashboard` when accessing the 
 
 ```typescript
 // In app/page.tsx
-import { auth } from "@clerk/nextjs/server"
-import { redirect } from "next/navigation"
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default async function HomePage() {
-  const { userId } = await auth()
-  
+  const { userId } = await auth();
+
   if (userId) {
-    redirect("/dashboard")
+    redirect("/dashboard");
   }
-  
+
   // Show homepage to unauthenticated users
 }
 ```
@@ -63,15 +63,15 @@ export default async function HomePage() {
 Use Clerk's `auth()` for server-side authentication:
 
 ```typescript
-import { auth } from "@clerk/nextjs/server"
+import { auth } from "@clerk/nextjs/server";
 
 export default async function ServerComponent() {
-  const { userId } = await auth()
-  
+  const { userId } = await auth();
+
   if (!userId) {
     // Handle unauthenticated state
   }
-  
+
   // userId is guaranteed to exist here
 }
 ```
@@ -81,25 +81,25 @@ export default async function ServerComponent() {
 Always authenticate server actions that modify user data:
 
 ```typescript
-"use server"
+"use server";
 
-import { auth } from "@clerk/nextjs/server"
-import { db } from "@/db"
-import { links } from "@/db/schema"
+import { auth } from "@clerk/nextjs/server";
+import { db } from "@/db";
+import { links } from "@/db/schema";
 
 export async function createLink(data: LinkData) {
-  const { userId } = await auth()
-  
+  const { userId } = await auth();
+
   if (!userId) {
-    return { error: "Unauthorized" }
+    return { error: "Unauthorized" };
   }
-  
+
   await db.insert(links).values({
     ...data,
     userId, // Always associate with user
-  })
-  
-  return { success: true }
+  });
+
+  return { success: true };
 }
 ```
 
@@ -114,15 +114,15 @@ import { useUser } from "@clerk/nextjs"
 
 export function UserProfile() {
   const { user, isLoaded, isSignedIn } = useUser()
-  
+
   if (!isLoaded) {
     return <div>Loading...</div>
   }
-  
+
   if (!isSignedIn) {
     return <div>Please sign in</div>
   }
-  
+
   return <div>Hello {user.firstName}</div>
 }
 ```
@@ -156,7 +156,7 @@ Display user menu with account management:
 ```typescript
 import { UserButton } from "@clerk/nextjs"
 
-<UserButton 
+<UserButton
   afterSignOutUrl="/"
   appearance={{
     elements: {
@@ -178,7 +178,7 @@ export const links = pgTable("links", {
   id: serial("id").primaryKey(),
   userId: text("user_id").notNull(), // Clerk userId
   // other fields...
-})
+});
 ```
 
 ### Querying User Data
@@ -186,16 +186,13 @@ export const links = pgTable("links", {
 Filter by `userId` for user-specific data:
 
 ```typescript
-const { userId } = await auth()
+const { userId } = await auth();
 
 if (!userId) {
-  throw new Error("Unauthorized")
+  throw new Error("Unauthorized");
 }
 
-const userLinks = await db
-  .select()
-  .from(links)
-  .where(eq(links.userId, userId))
+const userLinks = await db.select().from(links).where(eq(links.userId, userId));
 ```
 
 ## Security Best Practices
@@ -211,19 +208,16 @@ const userLinks = await db
 ### Protecting API Routes
 
 ```typescript
-import { auth } from "@clerk/nextjs/server"
-import { NextResponse } from "next/server"
+import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { userId } = await auth()
-  
+  const { userId } = await auth();
+
   if (!userId) {
-    return NextResponse.json(
-      { error: "Unauthorized" },
-      { status: 401 }
-    )
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  
+
   // Handle authenticated request
 }
 ```
@@ -238,7 +232,7 @@ import { SignInButton } from "@clerk/nextjs"
 
 export function Navigation() {
   const { isSignedIn } = useAuth()
-  
+
   return (
     <nav>
       {isSignedIn ? (
@@ -268,37 +262,35 @@ For route-level protection with Clerk middleware:
 
 ```typescript
 // middleware.ts
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isProtectedRoute = createRouteMatcher([
-  "/dashboard(.*)",
-])
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
-    await auth.protect()
+    await auth.protect();
   }
-})
+});
 
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
-}
+};
 ```
 
 ## Error Handling
 
 ```typescript
 try {
-  const { userId } = await auth()
-  
+  const { userId } = await auth();
+
   if (!userId) {
-    throw new Error("Authentication required")
+    throw new Error("Authentication required");
   }
-  
+
   // Perform operation
 } catch (error) {
-  console.error("Auth error:", error)
-  return { error: "Failed to authenticate" }
+  console.error("Auth error:", error);
+  return { error: "Failed to authenticate" };
 }
 ```
 

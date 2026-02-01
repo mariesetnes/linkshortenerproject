@@ -35,6 +35,7 @@ npx shadcn@latest add [component-name]
 ```
 
 Examples:
+
 ```bash
 npx shadcn@latest add dialog
 npx shadcn@latest add table
@@ -42,6 +43,7 @@ npx shadcn@latest add dropdown-menu
 ```
 
 This will:
+
 - Install the component in `components/ui/`
 - Include all necessary dependencies
 - Configure it with the project's style (New York variant)
@@ -51,9 +53,9 @@ This will:
 ### Basic Import
 
 ```typescript
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 ```
 
 ### Composing Components
@@ -133,9 +135,9 @@ import { Label } from "@/components/ui/label"
 
 <div className="space-y-2">
   <Label htmlFor="url">URL</Label>
-  <Input 
-    id="url" 
-    type="url" 
+  <Input
+    id="url"
+    type="url"
     placeholder="https://example.com"
   />
   <Button type="submit">Shorten</Button>
@@ -265,6 +267,7 @@ import { AlertCircle } from "lucide-react"
 ## What NOT to Do
 
 ❌ **Don't create custom button components**
+
 ```typescript
 // Wrong
 const CustomButton = ({ children }) => (
@@ -273,6 +276,7 @@ const CustomButton = ({ children }) => (
 ```
 
 ✅ **Use shadcn/ui Button**
+
 ```typescript
 // Correct
 import { Button } from "@/components/ui/button"
@@ -280,6 +284,7 @@ import { Button } from "@/components/ui/button"
 ```
 
 ❌ **Don't create custom input components**
+
 ```typescript
 // Wrong
 const CustomInput = (props) => (
@@ -288,6 +293,7 @@ const CustomInput = (props) => (
 ```
 
 ✅ **Use shadcn/ui Input**
+
 ```typescript
 // Correct
 import { Input } from "@/components/ui/input"
@@ -295,6 +301,7 @@ import { Input } from "@/components/ui/input"
 ```
 
 ❌ **Don't create custom card wrappers**
+
 ```typescript
 // Wrong
 const CustomCard = ({ children }) => (
@@ -303,6 +310,7 @@ const CustomCard = ({ children }) => (
 ```
 
 ✅ **Use shadcn/ui Card**
+
 ```typescript
 // Correct
 import { Card, CardContent } from "@/components/ui/card"

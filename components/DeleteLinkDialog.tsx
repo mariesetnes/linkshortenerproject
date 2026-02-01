@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -9,34 +9,34 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { deleteLinkAction } from "@/app/dashboard/actions"
-import { Trash2, Loader2 } from "lucide-react"
-import type { Link } from "@/db/schema"
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { deleteLinkAction } from "@/app/dashboard/actions";
+import { Trash2, Loader2 } from "lucide-react";
+import type { Link } from "@/db/schema";
 
 interface DeleteLinkDialogProps {
-  link: Link
+  link: Link;
 }
 
 export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
-  const [open, setOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleDelete() {
-    setIsLoading(true)
-    setError(null)
+    setIsLoading(true);
+    setError(null);
 
-    const result = await deleteLinkAction({ linkId: link.id })
+    const result = await deleteLinkAction({ linkId: link.id });
 
-    setIsLoading(false)
+    setIsLoading(false);
 
     if (result.error) {
-      setError(result.error)
+      setError(result.error);
     } else {
       // Success - close dialog
-      setOpen(false)
+      setOpen(false);
     }
   }
 
@@ -52,18 +52,23 @@ export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
         <DialogHeader>
           <DialogTitle>Delete Link</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete this link? This action cannot be undone.
+            Are you sure you want to delete this link? This action cannot be
+            undone.
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
           <div className="rounded-md bg-muted p-4 space-y-2">
             <div className="text-sm">
               <span className="font-medium">Short Code:</span>{" "}
-              <span className="text-muted-foreground break-all">{link.shortCode}</span>
+              <span className="text-muted-foreground break-all">
+                {link.shortCode}
+              </span>
             </div>
             <div className="text-sm">
               <span className="font-medium">URL:</span>{" "}
-              <span className="text-muted-foreground break-all">{link.url}</span>
+              <span className="text-muted-foreground break-all">
+                {link.url}
+              </span>
             </div>
           </div>
         </div>
@@ -95,5 +100,5 @@ export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

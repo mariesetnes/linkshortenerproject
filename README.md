@@ -26,7 +26,7 @@ A modern, full-featured link shortener application built with Next.js 16, React 
 
 ## 📋 Prerequisites
 
-- Node.js 20+ 
+- Node.js 20+
 - npm or yarn
 - A Neon database account
 - A Clerk account
@@ -188,6 +188,7 @@ This project follows strict coding standards:
 ## 📞 Support
 
 For issues or questions:
+
 - Check the [documentation](./docs)
 - Review [AGENTS.md](./AGENTS.md)
 - Open an issue on GitHub

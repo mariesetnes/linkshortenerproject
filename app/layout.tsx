@@ -24,7 +24,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Link Shortener - Create Short, Memorable Links",
-  description: "A modern link shortener application with custom short codes, analytics tracking, and user-friendly dashboard. Built with Next.js and TypeScript.",
+  description:
+    "A modern link shortener application with custom short codes, analytics tracking, and user-friendly dashboard. Built with Next.js and TypeScript.",
 };
 
 export default function RootLayout({

@@ -1,21 +1,27 @@
-import { auth } from "@clerk/nextjs/server"
-import { redirect } from "next/navigation"
-import { getUserLinks } from "@/data/links"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { CreateLinkDialog } from "@/components/CreateLinkDialog"
-import { EditLinkDialog } from "@/components/EditLinkDialog"
-import { DeleteLinkDialog } from "@/components/DeleteLinkDialog"
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { getUserLinks } from "@/data/links";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { CreateLinkDialog } from "@/components/CreateLinkDialog";
+import { EditLinkDialog } from "@/components/EditLinkDialog";
+import { DeleteLinkDialog } from "@/components/DeleteLinkDialog";
 
 export default async function DashboardPage() {
-  const { userId } = await auth()
-  
+  const { userId } = await auth();
+
   if (!userId) {
-    redirect("/")
+    redirect("/");
   }
-  
-  const userLinks = await getUserLinks(userId)
-  
+
+  const userLinks = await getUserLinks(userId);
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-8 flex items-center justify-between">
@@ -25,7 +31,7 @@ export default async function DashboardPage() {
         </div>
         <CreateLinkDialog />
       </div>
-      
+
       {userLinks.length === 0 ? (
         <Card>
           <CardContent className="pt-6">
@@ -68,5 +74,5 @@ export default async function DashboardPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

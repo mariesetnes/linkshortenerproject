@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useRef } from "react"
+import { useState, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,51 +8,51 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { createLinkAction } from "@/app/dashboard/actions"
-import { Plus, Loader2 } from "lucide-react"
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { createLinkAction } from "@/app/dashboard/actions";
+import { Plus, Loader2 } from "lucide-react";
 
 export function CreateLinkDialog() {
-  const [open, setOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<{
-    url?: string[]
-    shortCode?: string[]
-  }>({})
-  const formRef = useRef<HTMLFormElement>(null)
+    url?: string[];
+    shortCode?: string[];
+  }>({});
+  const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setIsLoading(true)
-    setError(null)
-    setFieldErrors({})
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setFieldErrors({});
 
-    const formData = new FormData(e.currentTarget)
+    const formData = new FormData(e.currentTarget);
 
     // Create typed object (NOT FormData type)
     const input = {
       url: formData.get("url") as string,
       shortCode: formData.get("shortCode") as string,
-    }
+    };
 
-    const result = await createLinkAction(input)
+    const result = await createLinkAction(input);
 
-    setIsLoading(false)
+    setIsLoading(false);
 
     if (result.error) {
       if (result.details?.fieldErrors) {
-        setFieldErrors(result.details.fieldErrors)
+        setFieldErrors(result.details.fieldErrors);
       } else {
-        setError(result.error)
+        setError(result.error);
       }
     } else {
       // Success - close dialog and reset form
-      setOpen(false)
-      formRef.current?.reset()
+      setOpen(false);
+      formRef.current?.reset();
     }
   }
 
@@ -132,5 +132,5 @@ export function CreateLinkDialog() {
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

@@ -65,14 +65,16 @@ npm run lint             # Run ESLint
 ## Import Aliases
 
 ```typescript
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { db } from "@/db"
-import { links } from "@/db/schema"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { db } from "@/db";
+import { links } from "@/db/schema";
 ```
+
 ## Getting Help
 
 If you encounter something not covered in these guides:
+
 1. Check existing implementations in the codebase
 2. Refer to official documentation:
    - [Next.js Docs](https://nextjs.org/docs)

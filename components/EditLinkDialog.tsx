@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,65 +8,65 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { updateLinkAction } from "@/app/dashboard/actions"
-import { Edit, Loader2 } from "lucide-react"
-import type { Link } from "@/db/schema"
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { updateLinkAction } from "@/app/dashboard/actions";
+import { Edit, Loader2 } from "lucide-react";
+import type { Link } from "@/db/schema";
 
 interface EditLinkDialogProps {
-  link: Link
+  link: Link;
 }
 
 export function EditLinkDialog({ link }: EditLinkDialogProps) {
-  const [open, setOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<{
-    url?: string[]
-    shortCode?: string[]
-  }>({})
-  const formRef = useRef<HTMLFormElement>(null)
+    url?: string[];
+    shortCode?: string[];
+  }>({});
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Reset form when dialog opens
   useEffect(() => {
     if (open && formRef.current) {
-      formRef.current.reset()
-      setError(null)
-      setFieldErrors({})
+      formRef.current.reset();
+      setError(null);
+      setFieldErrors({});
     }
-  }, [open])
+  }, [open]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setIsLoading(true)
-    setError(null)
-    setFieldErrors({})
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setFieldErrors({});
 
-    const formData = new FormData(e.currentTarget)
+    const formData = new FormData(e.currentTarget);
 
     // Create typed object (NOT FormData type)
     const input = {
       linkId: link.id,
       url: formData.get("url") as string,
       shortCode: formData.get("shortCode") as string,
-    }
+    };
 
-    const result = await updateLinkAction(input)
+    const result = await updateLinkAction(input);
 
-    setIsLoading(false)
+    setIsLoading(false);
 
     if (result.error) {
       if (result.details?.fieldErrors) {
-        setFieldErrors(result.details.fieldErrors)
+        setFieldErrors(result.details.fieldErrors);
       } else {
-        setError(result.error)
+        setError(result.error);
       }
     } else {
       // Success - close dialog
-      setOpen(false)
+      setOpen(false);
     }
   }
 
@@ -148,5 +148,5 @@ export function EditLinkDialog({ link }: EditLinkDialogProps) {
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

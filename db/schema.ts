@@ -1,4 +1,11 @@
-import { pgTable, integer, text, timestamp, index, uniqueIndex } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  integer,
+  text,
+  timestamp,
+  index,
+  uniqueIndex,
+} from "drizzle-orm/pg-core";
 import { InferSelectModel, InferInsertModel } from "drizzle-orm";
 
 export const links = pgTable(
@@ -19,7 +26,7 @@ export const links = pgTable(
   (table) => ({
     shortCodeIdx: uniqueIndex("short_code_idx").on(table.shortCode),
     userIdIdx: index("user_id_idx").on(table.userId),
-  })
+  }),
 );
 
 export type Link = InferSelectModel<typeof links>;

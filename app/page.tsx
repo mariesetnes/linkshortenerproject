@@ -1,22 +1,28 @@
-import { auth } from "@clerk/nextjs/server"
-import { redirect } from "next/navigation"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Link2, BarChart3, Lock, Moon, Zap, Code } from "lucide-react"
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Link2, Lock, Moon, Zap, Code } from "lucide-react";
 
 export default async function Home() {
   try {
-    const { userId } = await auth()
-    
+    const { userId } = await auth();
+
     if (userId) {
-      redirect("/dashboard")
+      redirect("/dashboard");
     }
   } catch (error) {
     // Handle Clerk configuration issues gracefully
-    console.log("Auth check skipped:", error)
+    console.log("Auth check skipped:", error);
   }
-  
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -28,18 +34,17 @@ export default async function Home() {
               <span className="text-primary">Amplify Results</span>
             </h1>
             <p className="text-xl text-muted-foreground md:text-2xl">
-              Create short, memorable links with custom codes. Track analytics and manage all your links in one powerful dashboard.
+              Create short, memorable links with custom codes. Manage all your
+              links in one powerful dashboard.
             </p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4">
             <Button size="lg" asChild>
-              <Link href="/dashboard">
-                Get Started Free
-              </Link>
+              <Link href="/dashboard">Get Started Free</Link>
             </Button>
           </div>
-          
+
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Zap className="h-4 w-4" />
             <span>No credit card required • Free forever</span>
@@ -54,7 +59,8 @@ export default async function Home() {
             Everything you need to manage links
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Built with modern technologies for the best performance, security, and user experience.
+            Built with modern technologies for the best performance, security,
+            and user experience.
           </p>
         </div>
 
@@ -71,24 +77,8 @@ export default async function Home() {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Create memorable, branded links with custom short codes that reflect your brand or campaign.
-              </CardDescription>
-            </CardContent>
-          </Card>
-
-          {/* Analytics Tracking */}
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <BarChart3 className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Click Analytics</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-base">
-                Track every click with detailed analytics. Understand your audience and measure engagement.
+                Create memorable, branded links with custom short codes that
+                reflect your brand or campaign.
               </CardDescription>
             </CardContent>
           </Card>
@@ -105,7 +95,8 @@ export default async function Home() {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Enterprise-grade security with Clerk authentication. Your data is safe and protected.
+                Enterprise-grade security with Clerk authentication. Your data
+                is safe and protected.
               </CardDescription>
             </CardContent>
           </Card>
@@ -122,7 +113,8 @@ export default async function Home() {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Organize, edit, and delete links easily. Manage all your shortened URLs from one dashboard.
+                Organize, edit, and delete links easily. Manage all your
+                shortened URLs from one dashboard.
               </CardDescription>
             </CardContent>
           </Card>
@@ -139,7 +131,8 @@ export default async function Home() {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Full dark mode support that&apos;s easy on the eyes. Seamlessly switch between light and dark themes.
+                Full dark mode support that&apos;s easy on the eyes. Seamlessly
+                switch between light and dark themes.
               </CardDescription>
             </CardContent>
           </Card>
@@ -156,7 +149,8 @@ export default async function Home() {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Built with Next.js 16 and React 19 for blazing fast performance and optimal user experience.
+                Built with Next.js 16 and React 19 for blazing fast performance
+                and optimal user experience.
               </CardDescription>
             </CardContent>
           </Card>
@@ -172,12 +166,11 @@ export default async function Home() {
                 Ready to shorten your links?
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl">
-                Join thousands of users who trust our link shortener for their business and personal needs.
+                Join thousands of users who trust our link shortener for their
+                business and personal needs.
               </p>
               <Button size="lg" asChild>
-                <Link href="/dashboard">
-                  Get Started Now
-                </Link>
+                <Link href="/dashboard">Get Started Now</Link>
               </Button>
             </div>
           </CardContent>
